@@ -1,59 +1,105 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
-
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <h1 align="center">🔥 Auction System (Laravel)</h1>
+  <p align="center">A full-stack auction web app where users can sell products and place bids.</p>
 </p>
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## About Auction System
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+This project is a full-stack web application built using Laravel that allows users to participate in an online auction system.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Users can register, list products for sale, and place bids on other users' products. The system ensures that only valid bids (higher than the current bid) are accepted.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## Features
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- 🔐 User Authentication (Login & Signup)
+- 📦 Product Listing (Sell items)
+- 💰 Bidding System (Highest bid logic)
+- 🖼️ Image Upload using Laravel Storage
+- 📊 Dashboard showing all products
+- ⚡ Toast Notifications
+- 🔒 Route Protection using Auth Middleware
+- 🎨 Responsive UI using Tailwind CSS
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Tech Stack
 
-### Premium Partners
+- Backend: Laravel (PHP)
+- Frontend: Blade + Tailwind CSS
+- Database: MySQL
+- Storage: Laravel File Storage
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+---
 
-## Contributing
+## How It Works
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Users register and log in  
+- Users can add products for auction  
+- Other users can place bids  
+- System validates: new bid must be higher than current bid  
+- Highest bid is displayed dynamically  
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## Installation
 
-## Security Vulnerabilities
+git clone https://github.com/AnuROID/AuctionX.git  
+cd AuctionX  
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Install Dependencies
+composer install  
+npm install && npm run dev  
+
+### Setup Environment
+cp .env.example .env  
+php artisan key:generate  
+
+### Configure Database (.env)
+
+DB_DATABASE=auction  
+DB_USERNAME=root  
+DB_PASSWORD=  
+
+### Run Migrations
+php artisan migrate  
+
+### Storage Link
+php artisan storage:link  
+
+### Run Project
+php artisan serve  
+
+Open: http://127.0.0.1:8000  
+
+---
+
+## Security
+
+- CSRF Protection  
+- Auth Middleware for protected routes  
+- Environment variables secured via `.env`  
+
+---
+
+## Future Improvements
+
+- Real-time bidding (WebSockets / Pusher)  
+- Auction timer system  
+- Payment integration  
+- Notification system  
+
+---
+
+## Author
+
+Anurag Sharma  
+
+---
 
 ## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+This project is open-source and available under the MIT License.
