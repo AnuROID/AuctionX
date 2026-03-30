@@ -1,158 +1,132 @@
 <p align="center">
-  <h1 align="center">🏥 Hospital Management System</h1>
-  <p align="center">A secure hospital web app with token-based authentication using Laravel Sanctum.</p>
+  <h1 align="center">🔥 AuctionX - Online Auction Platform</h1>
+  <p align="center">
+    A full-stack auction web application built with Laravel where users can sell products and place bids.
+  </p>
+</p>
+
+<p align="center">
+<a href="#"><img src="https://img.shields.io/badge/Laravel-Framework-red" alt="Laravel"></a>
+<a href="#"><img src="https://img.shields.io/badge/PHP-Backend-blue" alt="PHP"></a>
+<a href="#"><img src="https://img.shields.io/badge/TailwindCSS-UI-38bdf8" alt="Tailwind"></a>
+<a href="#"><img src="https://img.shields.io/badge/MySQL-Database-orange" alt="MySQL"></a>
+<a href="#"><img src="https://img.shields.io/badge/Status-Active-success" alt="Status"></a>
 </p>
 
 ---
 
-## About Project
+# 🧾 Project Overview
 
-This project is a Hospital Management Web Application focused on secure user authentication and API-based communication.
+**AuctionX** is a web-based auction platform where users can:
 
-It allows users to register, log in, and access protected routes using token-based authentication. The system ensures security using Laravel Sanctum and follows REST API architecture.
+- Create accounts  
+- List products for auction  
+- Place bids on other users’ items  
+
+The system ensures that every new bid is **higher than the current highest bid**, maintaining a fair auction process.
+
+This project demonstrates full-stack development using **Laravel, Blade, Tailwind CSS, and MySQL**.
 
 ---
 
-## Features
+# 🚀 Features
 
-### 🔐 Authentication System
+## 🔐 Authentication System
 - User Registration
 - User Login
-- Token-based Authentication (Laravel Sanctum)
-- Logout (token deletion)
-- Get Logged-in User
-- Protected Routes using middleware
-
-### 🌐 Frontend
-- Landing Page (Hospital UI)
-- Signup Page (connected to API)
-- Login Page (connected to API)
-- Token stored in browser (localStorage)
-
-### 🔗 Backend
-- REST API built with Laravel
-- Input validation (email, password, etc.)
-- Secure password hashing
-- MySQL database integration
+- Secure Password Hashing
+- Logout functionality
+- Session-based authentication
+- Protected routes using middleware
 
 ---
 
-## Tech Stack
+## 📦 Product Management
+- List products for auction
+- Upload product images
+- Set base price
+- View products on dashboard
 
-### Backend
+---
+
+## 💰 Bidding System
+- Place bids on products
+- Validation: bid must be higher than current bid
+- Automatic highest bid tracking
+- Bid history stored in database
+
+---
+
+## 🎨 User Interface
+- Landing page with hero section
+- Responsive dashboard
+- Product cards with hover effects
+- Toast notifications
+- Clean UI using Tailwind CSS
+
+---
+
+# 🧱 Database Structure
+
+## Users
+| Field | Description |
+|------|------------|
+| id | Primary key |
+| name | User name |
+| email | User email |
+| password | Hashed password |
+| timestamps | Created & updated time |
+
+---
+
+## Products
+| Field | Description |
+|------|------------|
+| id | Primary key |
+| title | Product name |
+| image | Product image |
+| base_price | Starting price |
+| user_id | Owner |
+| timestamps | Created & updated time |
+
+---
+
+## Bids
+| Field | Description |
+|------|------------|
+| id | Primary key |
+| product_id | Related product |
+| user_id | Bidder |
+| bid_amount | Bid value |
+| timestamps | Created & updated time |
+
+---
+
+# ⚙️ Tech Stack
+
+## Backend
 - Laravel
-- Laravel Sanctum
+- PHP
+- Eloquent ORM
+- Middleware
 
-### Frontend
-- HTML
+## Frontend
+- Blade Templates
 - Tailwind CSS
-- Axios
+- HTML
+- JavaScript
 
-### Database
+## Database
 - MySQL
 
----
-
-## How It Works
-
-1. User registers → data stored in database  
-2. User logs in → token generated  
-3. Token stored in browser (localStorage)  
-4. Token sent in API headers for authentication  
-5. User accesses protected routes  
-6. Logout → token deleted  
+## Storage
+- Laravel Storage (Images)
 
 ---
 
-## Important Concepts
+# 🔑 Core Concepts
 
-### 🔐 Token-Based Authentication
-After login, a token is generated and stored:
+## Authentication Middleware
 
-localStorage.setItem("token", response.data.token);
-
-Used in headers:
-
-Authorization: Bearer <token>
-
----
-
-### 🔒 Protected Routes
-
-Route::post('/logout')->middleware('auth:sanctum');
-
-Ensures only authenticated users can access routes.
-
----
-
-### 👤 Get Logged-in User
-
-$request->user();
-
-Fetches authenticated user from token.
-
----
-
-### 🔑 Logout Logic
-
-$request->user()->currentAccessToken()->delete();
-
-Deletes current token securely.
-
----
-
-### 🔐 Password Security
-
-Hash::make($data['password']);
-
-Stores encrypted password.
-
----
-
-### 📡 API Calls
-
-axios.post("/api/login", {...})
-
-Connects frontend to backend.
-
----
-
-## Installation
-
-git clone https://github.com/YOUR-USERNAME/hospital-management-system.git  
-cd hospital-management-system  
-
-composer install  
-cp .env.example .env  
-php artisan key:generate  
-
-Update database in `.env`:
-
-DB_DATABASE=your_db  
-DB_USERNAME=root  
-DB_PASSWORD=  
-
-php artisan migrate  
-php artisan serve  
-
----
-
-## Future Improvements
-
-- Role-based access (Admin / Doctor / Patient)
-- Appointment booking system
-- Patient records management
-- Dashboard analytics
-- Notifications system
-
----
-
-## Author
-
-Anurag Sharma
-
----
-
-## License
-
-This project is open-source and available under the MIT License.
+```php
+Route::middleware('auth')->group(function () {
