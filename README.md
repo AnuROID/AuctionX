@@ -1,102 +1,155 @@
 <p align="center">
-  <h1 align="center">🔥 Auction System (Laravel)</h1>
-  <p align="center">A full-stack auction web app where users can sell products and place bids.</p>
+  <h1 align="center">🏥 Hospital Management System</h1>
+  <p align="center">A secure hospital web app with token-based authentication using Laravel Sanctum.</p>
 </p>
 
 ---
 
-## About Auction System
+## About Project
 
-This project is a full-stack web application built using Laravel that allows users to participate in an online auction system.
+This project is a Hospital Management Web Application focused on secure user authentication and API-based communication.
 
-Users can register, list products for sale, and place bids on other users' products. The system ensures that only valid bids (higher than the current bid) are accepted.
+It allows users to register, log in, and access protected routes using token-based authentication. The system ensures security using Laravel Sanctum and follows REST API architecture.
 
 ---
 
 ## Features
 
-- 🔐 User Authentication (Login & Signup)
-- 📦 Product Listing (Sell items)
-- 💰 Bidding System (Highest bid logic)
-- 🖼️ Image Upload using Laravel Storage
-- 📊 Dashboard showing all products
-- ⚡ Toast Notifications
-- 🔒 Route Protection using Auth Middleware
-- 🎨 Responsive UI using Tailwind CSS
+### 🔐 Authentication System
+- User Registration
+- User Login
+- Token-based Authentication (Laravel Sanctum)
+- Logout (token deletion)
+- Get Logged-in User
+- Protected Routes using middleware
+
+### 🌐 Frontend
+- Landing Page (Hospital UI)
+- Signup Page (connected to API)
+- Login Page (connected to API)
+- Token stored in browser (localStorage)
+
+### 🔗 Backend
+- REST API built with Laravel
+- Input validation (email, password, etc.)
+- Secure password hashing
+- MySQL database integration
 
 ---
 
 ## Tech Stack
 
-- Backend: Laravel (PHP)
-- Frontend: Blade + Tailwind CSS
-- Database: MySQL
-- Storage: Laravel File Storage
+### Backend
+- Laravel
+- Laravel Sanctum
+
+### Frontend
+- HTML
+- Tailwind CSS
+- Axios
+
+### Database
+- MySQL
 
 ---
 
 ## How It Works
 
-- Users register and log in  
-- Users can add products for auction  
-- Other users can place bids  
-- System validates: new bid must be higher than current bid  
-- Highest bid is displayed dynamically  
+1. User registers → data stored in database  
+2. User logs in → token generated  
+3. Token stored in browser (localStorage)  
+4. Token sent in API headers for authentication  
+5. User accesses protected routes  
+6. Logout → token deleted  
+
+---
+
+## Important Concepts
+
+### 🔐 Token-Based Authentication
+After login, a token is generated and stored:
+
+localStorage.setItem("token", response.data.token);
+
+Used in headers:
+
+Authorization: Bearer <token>
+
+---
+
+### 🔒 Protected Routes
+
+Route::post('/logout')->middleware('auth:sanctum');
+
+Ensures only authenticated users can access routes.
+
+---
+
+### 👤 Get Logged-in User
+
+$request->user();
+
+Fetches authenticated user from token.
+
+---
+
+### 🔑 Logout Logic
+
+$request->user()->currentAccessToken()->delete();
+
+Deletes current token securely.
+
+---
+
+### 🔐 Password Security
+
+Hash::make($data['password']);
+
+Stores encrypted password.
+
+---
+
+### 📡 API Calls
+
+axios.post("/api/login", {...})
+
+Connects frontend to backend.
 
 ---
 
 ## Installation
 
-git clone https://github.com/AnuROID/AuctionX.git  
-cd AuctionX  
+git clone https://github.com/YOUR-USERNAME/hospital-management-system.git  
+cd hospital-management-system  
 
-### Install Dependencies
 composer install  
-npm install && npm run dev  
-
-### Setup Environment
 cp .env.example .env  
 php artisan key:generate  
 
-### Configure Database (.env)
+Update database in `.env`:
 
-DB_DATABASE=auction  
+DB_DATABASE=your_db  
 DB_USERNAME=root  
 DB_PASSWORD=  
 
-### Run Migrations
 php artisan migrate  
-
-### Storage Link
-php artisan storage:link  
-
-### Run Project
 php artisan serve  
-
-Open: http://127.0.0.1:8000  
-
----
-
-## Security
-
-- CSRF Protection  
-- Auth Middleware for protected routes  
-- Environment variables secured via `.env`  
 
 ---
 
 ## Future Improvements
 
-- Real-time bidding (WebSockets / Pusher)  
-- Auction timer system  
-- Payment integration  
-- Notification system  
+- Role-based access (Admin / Doctor / Patient)
+- Appointment booking system
+- Patient records management
+- Dashboard analytics
+- Notifications system
 
 ---
 
 ## Author
 
-Anurag Sharma  
+Anurag Sharma
 
 ---
 
